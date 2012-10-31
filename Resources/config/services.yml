@@ -1,0 +1,31 @@
+parameters:
+  titan.customer.helper.customer.class:           Titan\Bundle\CustomerBundle\Helper\CustomerHelper
+  titan.customer.helper.email_verification.class: Titan\Bundle\CustomerBundle\Helper\EmailVerificationHelper
+  titan.customer.helper.search_results.class:     Titan\Bundle\CustomerBundle\Helper\SearchResultsHelper
+  titan.customer.helper.export.class:             Titan\Bundle\CustomerBundle\Helper\ExportHelper
+
+services:
+  titan.customer.helper.customer:
+    class: %titan.customer.helper.customer.class%
+  titan.customer.helper.email_verification:
+    class: %titan.customer.helper.email_verification.class%
+  titan.customer.helper.search_results:
+    class: %titan.customer.helper.search_results.class%
+  titan.customer.helper.export:
+    class: %titan.customer.helper.export.class%
+
+
+
+  # Subscribers and Listeners
+  titan.customer.subscriber.user_accountability:
+    public: false
+    class: Titan\Bundle\CustomerBundle\Subscriber\UserAccountabilitySubscriber
+    arguments: [ @service_container ]
+    tags:
+      - { name: doctrine.event_subscriber }
+  titan.customer.subscriber.email_verification:
+    public: false
+    class: Titan\Bundle\CustomerBundle\Subscriber\EmailVerificationSubscriber
+    arguments: [ @service_container ]
+    tags:
+      - { name: doctrine.event_subscriber }
