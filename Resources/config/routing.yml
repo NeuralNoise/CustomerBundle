@@ -1,0 +1,3 @@
+TitanCustomerBundle_routes:
+  resource: "@TitanCustomerBundle/Controller"
+  type:     annotation
