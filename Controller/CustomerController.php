@@ -30,7 +30,7 @@ class CustomerController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('TitanCustomerBundle:Customer')->findBy(array('active' => true, null, 50));
+        $entities = $em->getRepository('TitanCustomerBundle:Customer')->findBy(array('active' => true), null, 50);
 
         $this->get('titan.customer.helper.search_results')->setLastSearchResults(SearchController::LAST_SEARCH_KEY, $entities);
 

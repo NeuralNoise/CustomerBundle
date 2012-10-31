@@ -34,3 +34,12 @@ Configuration
         types:
           enum.titan.customer.interaction_type: Titan\Bundle\CustomerBundle\DbalType\InteractionTypeEnumType
           enum.titan.customer.customer_status:  Titan\Bundle\CustomerBundle\DbalType\CustomerStatusEnumType
+
+4. Ensure the proper roles are in the hierarchy in security.yml. See ROLES REFERENCE below.
+
+
+Roles Reference
+---------------
+
+*ROLE_CUSTOMER_READ*    - Read permission on Customer and Search controllers
+*ROLE_CUSTOMER_WRITE*   - Write permission on Customer and Search controllers

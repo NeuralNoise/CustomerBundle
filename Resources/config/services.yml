@@ -11,6 +11,7 @@ services:
     class: %titan.customer.helper.email_verification.class%
   titan.customer.helper.search_results:
     class: %titan.customer.helper.search_results.class%
+    arguments: [ @session ]
   titan.customer.helper.export:
     class: %titan.customer.helper.export.class%
 
