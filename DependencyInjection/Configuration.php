@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('terramar_customer');
+        $rootNode = $treeBuilder->root('terra_mar_customer');
 
         $rootNode
             ->children()
