@@ -1,0 +1,51 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Customers{% endblock %}
+
+{% block innerbody %}
+    <h2>Customers</h2>
+
+<table class="table-striped">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>{{ entity.firstName }}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{ entity.lastName }}</td>
+        </tr>
+        <tr>
+            <th>Email Address</th>
+            <td>{{ entity.emailAddress }}</td>
+        </tr>
+        <tr>
+            <th>Subscribed</th>
+            <td>{{ entity.subscribed ? 'Yes' : 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Email Verified</th>
+            <td>{{ entity.emailVerified ? 'Yes' : 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Last Modified</th>
+            <td>{{ entity.dateModified }}</td>
+        </tr>
+        <tr>
+            <th>Date Created</th>
+            <td>{{ entity.dateCreated }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="form-buttons">
+    <a class="btn" href="{{ path('customer_edit', { 'id': entity.id }) }}">Edit</a>
+    <form class="inline" action="{{ path('customer_delete', { 'id': entity.id }) }}" method="post">
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+</div>
+{% endblock %}

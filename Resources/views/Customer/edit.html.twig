@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block innerbody %}
+    <form action="{{ path('customer_update', { id: entity.id }) }}" method="post" {{ form_enctype(form) }}>
+        <h2> Edit Customer </h2>
+        <div class="row-fluid">
+            <div class="span2">
+                {{ form_row(form.firstName, { attr: { class: 'input-medium' } }) }}
+            </div>
+            <div class="span2">
+                {{ form_row(form.lastName, { attr: { class: 'input-medium' } }) }}
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span2">
+                {{ form_row(form.contactAddress.phone, { attr: { class: 'input-medium' } }) }}
+            </div>
+            <div class="span2">
+                {{ form_row(form.emailAddress, { attr: { class: 'input-medium' } }) }}
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                {{ form_row(form.subscribed) }}
+            </div>
+        </div>
+        <div class="row-fluid">
+                <h4>Contact Address</h4>
+                <div class="row-fluid">
+                    <div class="span2">
+                        {{ form_row(form.contactAddress.street, { attr: { class: 'input-medium' } }) }}
+                    </div>
+                    <div class="span2">
+                        {{ form_row(form.contactAddress.suite, { attr: { class: 'input-medium' } }) }}
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">
+                        {{ form_row(form.contactAddress.city, { attr: { class: 'input-medium' } }) }}
+                    </div>
+                    <div class="span1">
+                        {{ form_row(form.contactAddress.region, { attr: { class: 'input-small' } }) }}
+                    </div>
+                    <div class="span1">
+                        {{ form_row(form.contactAddress.postalCode, { attr: { class: 'input-small' }, label: 'Zip' }) }}
+                    </div>
+                </div>
+        </div>
+        <div class="hidden">
+            {{ form_rest(form) }}
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">Save Changes</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

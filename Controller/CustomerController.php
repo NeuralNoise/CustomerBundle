@@ -3,6 +3,7 @@
 namespace Titan\Bundle\CustomerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Titan\Bundle\CustomerBundle\Form\CustomerType;
 use Orkestra\Bundle\ApplicationBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -68,10 +69,166 @@ class CustomerController extends Controller
     }
 
     /**
+     * Shows a Customer
+     *
+     * @Route("/{id}/show", name="customer_show")
+     * @Template
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
+     */
+    public function showAction($id)
+    {
+        /** @var \Doctrine\ORM\EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $customer = $em->getRepository('TitanCustomerBundle:Customer')->find($id);
+
+        if (!$customer) {
+            throw $this->createNotFoundException('Unable to locate Customer');
+        }
+
+        return array(
+            'entity' => $customer
+        );
+    }
+
+    /**
+     * Shows a form to create a new Customer
+     *
+     * @Route("/new", name="customer_new")
+     * @Template
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
+     */
+    public function newAction()
+    {
+        $form = $this->createForm(new CustomerType());
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
+     * Shows a form to create a new Customer
+     *
+     * @Route("/create", name="customer_create")
+     * @Template("TitanCustomerBundle:Customer:new.html.twig")
+     * @Method("POST")
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
+     */
+    public function createAction(Request $request)
+    {
+        $form = $this->createForm(new CustomerType());
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $entity = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            $this->getSession()->getFlashBag()->set('success', 'The customer has been created successfully.');
+
+            return $this->redirect($this->generateUrl('customers'));
+        }
+
+        return array(
+            'form' => $form->createView()
+        );
+    }
+
+    /**
+     * Deletes a Customer
+     *
+     * @Route("/{id}/delete", name="customer_delete")
+     * @Method("POST")
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('Titan\Bundle\CustomerBundle\Entity\Customer')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to locate Customer');
+        }
+
+        $entity->setActive(false);
+        $em->persist($entity);
+        $em->flush();
+
+        $this->getSession()->getFlashBag()->set('success', 'The customer has been deleted successfully.');
+
+        return $this->redirect($this->generateUrl('customers'));
+    }
+
+    /**
+     * Shows a form to edit an existing Customer
+     *
+     * @Route("/{id}/edit", name="customer_edit")
+     * @Template
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
+     */
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('Titan\Bundle\CustomerBundle\Entity\Customer')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to locate Customer');
+        }
+
+        $form = $this->createForm(new CustomerType(), $entity);
+
+        return array(
+            'entity' => $entity,
+            'form' => $form->createView()
+        );
+    }
+
+    /**
+     * Updates an existing Customer
+     *
+     * @Route("/{id}/update", name="customer_update")
+     * @Template("TitanCustomerBundle:Customer:edit.html.twig")
+     * @Method("POST")
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('Titan\Bundle\CustomerBundle\Entity\Customer')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to locate Customer');
+        }
+
+        $form = $this->createForm(new CustomerType(), $entity);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em->persist($entity);
+            $em->flush();
+
+            $this->getSession()->getFlashBag()->set('success', 'The customer has been updated successfully.');
+
+            return $this->redirect($this->generateUrl('customers'));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form' => $form->createView()
+        );
+    }
+
+    /**
      * De-Activate a Customer.
      *
-     * @Route("/{id}/deactivate", name="customer_deactivate", defaults={"_format"="json"})
-     * @Secure(roles="ROLE_CUSTOMER_READ")
+     * @Route("/{id}/deactivate", name="customer_deactivate")
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
      */
     public function deactivateAction($id)
     {
@@ -96,8 +253,8 @@ class CustomerController extends Controller
     /**
      * Activate a Customer.
      *
-     * @Route("/{id}/activate", name="customer_activate", defaults={"_format"="json"})
-     * @Secure(roles="ROLE_CUSTOMER_READ")
+     * @Route("/{id}/activate", name="customer_activate")
+     * @Secure(roles="ROLE_CUSTOMER_WRITE")
      */
     public function activateAction($id)
     {
