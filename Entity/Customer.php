@@ -1,6 +1,6 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Entity;
+namespace TerraMar\Bundle\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
@@ -11,7 +11,7 @@ use Orkestra\Common\Entity\EntityBase;
  * A customer
  *
  * @ORM\Entity
- * @ORM\Table(name="titan_customers")
+ * @ORM\Table(name="terramar_customers")
  */
 class Customer extends EntityBase
 {
@@ -53,9 +53,9 @@ class Customer extends EntityBase
     protected $subscribed;
 
     /**
-     * @var \Titan\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @var \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
      *
-     * @ORM\Column(name="status", type="enum.titan.customer.customer_status")
+     * @ORM\Column(name="status", type="enum.terramar.customer.customer_status")
      */
     protected $status;
 
@@ -94,8 +94,8 @@ class Customer extends EntityBase
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Titan\Bundle\CustomerBundle\Entity\Note", cascade={"persist"})
-     * @ORM\JoinTable(name="titan_customers_notes",
+     * @ORM\ManyToMany(targetEntity="TerraMar\Bundle\CustomerBundle\Entity\Note", cascade={"persist"})
+     * @ORM\JoinTable(name="terramar_customers_notes",
      *      joinColumns={@ORM\JoinColumn(name="customer_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="note_id", referencedColumnName="id", unique=true)}
      * )
@@ -260,7 +260,7 @@ class Customer extends EntityBase
     }
 
     /**
-     * @param \Titan\Bundle\CustomerBundle\Entity\Customer\CustomerStatus $status
+     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus $status
      */
     public function setStatus($status)
     {
@@ -268,7 +268,7 @@ class Customer extends EntityBase
     }
 
     /**
-     * @return \Titan\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @return \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
      */
     public function getStatus()
     {

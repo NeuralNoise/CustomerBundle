@@ -1,13 +1,13 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Subscriber;
+namespace TerraMar\Bundle\CustomerBundle\Subscriber;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Titan\Bundle\CustomerBundle\Entity\Customer;
+use TerraMar\Bundle\CustomerBundle\Entity\Customer;
 
 class EmailVerificationSubscriber implements EventSubscriber
 {
@@ -32,7 +32,7 @@ class EmailVerificationSubscriber implements EventSubscriber
     protected $engine;
 
     /**
-     * @var \Titan\Bundle\CustomerBundle\Helper\EmailVerificationHelperInterface
+     * @var \TerraMar\Bundle\CustomerBundle\Helper\EmailVerificationHelperInterface
      */
     protected $helper;
 
@@ -66,7 +66,7 @@ class EmailVerificationSubscriber implements EventSubscriber
 
         $this->mailer = $this->container->get('mailer');
         $this->engine = $this->container->get('templating');
-        $this->helper = $this->container->get('titan.customer.helper.email_verification');
+        $this->helper = $this->container->get('terramar.customer.helper.email_verification');
         $this->router = $this->container->get('router');
         $this->sender = $this->container->getParameter('orkestra.system_email_address');
         $this->loaded = true;
@@ -103,7 +103,7 @@ class EmailVerificationSubscriber implements EventSubscriber
 
         $link = $this->router->generate('customer_verify_email', array('id' => $customer->getId(), 'hash' => $this->helper->getEmailVerificationHash($customer)), true);
 
-        $body = $this->engine->render('TitanCustomerBundle:VerifyEmail:email_template.html.twig', array('customer' => $customer, 'link' => $link));
+        $body = $this->engine->render('TerraMarCustomerBundle:VerifyEmail:email_template.html.twig', array('customer' => $customer, 'link' => $link));
 
         $message = new \Swift_Message();
         $message->setSubject('Verify your email')

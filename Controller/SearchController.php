@@ -1,17 +1,17 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Controller;
+namespace TerraMar\Bundle\CustomerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Orkestra\Bundle\ApplicationBundle\Controller\Controller;
-use Titan\Bundle\SalesBundle\Controller\AbstractController;
-use Titan\Bundle\CustomerBundle\Form\AdvancedSearchType;
+use TerraMar\Bundle\SalesBundle\Controller\AbstractController;
+use TerraMar\Bundle\CustomerBundle\Form\AdvancedSearchType;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
-use Titan\Bundle\CustomerBundle\Entity\Customer;
+use TerraMar\Bundle\CustomerBundle\Entity\Customer;
 
 /**
  * Customer controller.
@@ -41,7 +41,7 @@ class SearchController extends Controller
      * Lists all Customer entities from an Advanced Search.
      *
      * @Route("s/advanced-search", name="advanced_search")
-     * @Template("TitanCustomerBundle:Customer:index.html.twig")
+     * @Template("TerraMarCustomerBundle:Customer:index.html.twig")
      * @Secure(roles="ROLE_CUSTOMER_READ")
      */
     public function advancedSearchAction(Request $request)
@@ -59,7 +59,7 @@ class SearchController extends Controller
 
             $qb = $em->createQueryBuilder()
                 ->select('c')
-                ->from('TitanCustomerBundle:Customer', 'c')
+                ->from('TerraMarCustomerBundle:Customer', 'c')
                 ->join('c.contactAddress', 'ca');
 
             if ($data['firstName']) {
@@ -110,7 +110,7 @@ class SearchController extends Controller
             $entities = array();
         }
 
-        $this->get('titan.customer.helper.search_results')->setLastSearchResults(self::LAST_SEARCH_KEY, $entities);
+        $this->get('terramar.customer.helper.search_results')->setLastSearchResults(self::LAST_SEARCH_KEY, $entities);
 
         return array(
             'entities' => $entities,
@@ -132,7 +132,7 @@ class SearchController extends Controller
         $qb = $em->createQueryBuilder();
 
         $entities = $qb->select('c')
-            ->from('TitanCustomerBundle:Customer', 'c')
+            ->from('TerraMarCustomerBundle:Customer', 'c')
             ->where($qb->expr()->orX(
                 $qb->expr()->like('c.firstName', ':searchTerm'),
                 $qb->expr()->like('c.lastName', ':searchTerm'),
@@ -144,7 +144,7 @@ class SearchController extends Controller
             ->getResult();
 
         if (!$request->isXmlHttpRequest()) {
-            $this->get('titan.customer.helper.search_results')->setLastSearchResults(self::LAST_SEARCH_KEY, $entities);
+            $this->get('terramar.customer.helper.search_results')->setLastSearchResults(self::LAST_SEARCH_KEY, $entities);
         }
 
         return array(
@@ -212,16 +212,16 @@ class SearchController extends Controller
 
     private function exportLastSearchResults()
     {
-        $results = $this->get('titan.customer.helper.search_results')->getLastSearchResults(self::LAST_SEARCH_KEY);
+        $results = $this->get('terramar.customer.helper.search_results')->getLastSearchResults(self::LAST_SEARCH_KEY);
 
-        $helper = $this->get('titan.customer.helper.export');
+        $helper = $this->get('terramar.customer.helper.export');
 
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->createQueryBuilder()
             ->select('c')
-            ->from('TitanCustomerBundle:Customer', 'c')
+            ->from('TerraMarCustomerBundle:Customer', 'c')
             ->join('c.contactAddress', 'ca')
             ->andWhere('c.id IN (:results)')
             ->setParameter('results', $results)

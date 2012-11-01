@@ -1,6 +1,6 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Controller;
+namespace TerraMar\Bundle\CustomerBundle\Controller;
 
 use Orkestra\Bundle\ApplicationBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,14 +23,14 @@ class VerifyEmailController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        /** @var \Titan\Bundle\CustomerBundle\Entity\Customer $customer */
-        $customer = $em->getRepository('TitanCustomerBundle:Customer')->find($id);
+        /** @var \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer */
+        $customer = $em->getRepository('TerraMarCustomerBundle:Customer')->find($id);
 
         if (!$customer || $customer->getEmailVerified()) {
             throw $this->createNotFoundException('Unable to locate Customer entity');
         }
 
-        $helper = $this->get('titan.customer.helper.email_verification');
+        $helper = $this->get('terramar.customer.helper.email_verification');
 
         $verifyHash = $helper->getEmailVerificationHash($customer);
 

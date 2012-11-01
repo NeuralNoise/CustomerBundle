@@ -1,5 +1,5 @@
 {
-    "name": "titan/customer-bundle",
+    "name": "terramar/customer-bundle",
     "type": "symfony-bundle",
     "repositories": [
         {
@@ -17,7 +17,7 @@
         "orkestra/application-bundle": "dev-master"
     },
     "autoload": {
-        "psr-0": { "Titan\\Bundle\\CustomerBundle": "" }
+        "psr-0": { "TerraMar\\Bundle\\CustomerBundle": "" }
     },
-    "target-dir": "Titan/Bundle/CustomerBundle"
+    "target-dir": "TerraMar/Bundle/CustomerBundle"
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Repository;
+namespace TerraMar\Bundle\CustomerBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

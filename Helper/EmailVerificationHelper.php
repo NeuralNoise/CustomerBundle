@@ -1,15 +1,15 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Helper;
+namespace TerraMar\Bundle\CustomerBundle\Helper;
 
-use Titan\Bundle\CustomerBundle\Entity\Customer;
+use TerraMar\Bundle\CustomerBundle\Entity\Customer;
 
 class EmailVerificationHelper implements EmailVerificationHelperInterface
 {
     /**
      * Returns the email verification hash for a given customer
      *
-     * @param \Titan\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer
      *
      * @return string
      */

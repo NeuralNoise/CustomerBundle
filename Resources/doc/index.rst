@@ -18,22 +18,22 @@ Configuration
 
 1. Add bundles routes in routing.yml
 
-    TitanCustomerBundle:
-      resource: "@TitanCustomerBundle/Resources/config/routing.yml"
+    TerraMarCustomerBundle:
+      resource: "@TerraMarCustomerBundle/Resources/config/routing.yml"
 
 
 2. Ensure that `orkestra.system_email_address` has a value in parameters.yml. An array can be used, see Swift_Message::setFrom
 
     parameters:
-      orkestra.system_email_address:    { system@titanwebdev.com: 'System Generated' }
+      orkestra.system_email_address:    { system@terramarwebdev.com: 'System Generated' }
 
 3. Register the DBAL types in config.yml
 
     doctrine:
       dbal:
         types:
-          enum.titan.customer.interaction_type: Titan\Bundle\CustomerBundle\DbalType\InteractionTypeEnumType
-          enum.titan.customer.customer_status:  Titan\Bundle\CustomerBundle\DbalType\CustomerStatusEnumType
+          enum.terramar.customer.interaction_type: TerraMar\Bundle\CustomerBundle\DbalType\InteractionTypeEnumType
+          enum.terramar.customer.customer_status:  TerraMar\Bundle\CustomerBundle\DbalType\CustomerStatusEnumType
 
 4. Ensure the proper roles are in the hierarchy in security.yml. See ROLES REFERENCE below.
 

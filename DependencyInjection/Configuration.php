@@ -1,6 +1,6 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\DependencyInjection;
+namespace TerraMar\Bundle\CustomerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('titan_customer');
+        $rootNode = $treeBuilder->root('terramar_customer');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

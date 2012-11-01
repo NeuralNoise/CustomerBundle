@@ -1,6 +1,6 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Form;
+namespace TerraMar\Bundle\CustomerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Orkestra\Bundle\ApplicationBundle\Form\Contact\AddressType;
@@ -21,7 +21,7 @@ class CustomerType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Titan\Bundle\CustomerBundle\Entity\Customer'
+            'data_class' => 'TerraMar\Bundle\CustomerBundle\Entity\Customer'
         ));
     }
 

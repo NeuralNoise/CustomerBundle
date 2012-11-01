@@ -1,6 +1,6 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Helper;
+namespace TerraMar\Bundle\CustomerBundle\Helper;
 
 interface ExportHelperInterface
 {

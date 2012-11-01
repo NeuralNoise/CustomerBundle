@@ -1,9 +1,9 @@
 <?php
 
-namespace Titan\Bundle\CustomerBundle\Entity;
+namespace TerraMar\Bundle\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Titan\Bundle\CustomerBundle\Entity\Note\InteractionType;
+use TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
 use Orkestra\Common\Entity\EntityBase;
 
@@ -11,7 +11,7 @@ use Orkestra\Common\Entity\EntityBase;
  * A customer
  *
  * @ORM\Entity
- * @ORM\Table(name="titan_notes")
+ * @ORM\Table(name="terramar_notes")
  */
 class Note extends EntityBase
 {
@@ -30,9 +30,9 @@ class Note extends EntityBase
     protected $body = '';
 
     /**
-     * @var \Titan\Bundle\CustomerBundle\Entity\Note\InteractionType
+     * @var \TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType
      *
-     * @ORM\Column(name="interaction_type", type="enum.titan.customer.interaction_type")
+     * @ORM\Column(name="interaction_type", type="enum.terramar.customer.interaction_type")
      */
     protected $interactionType;
 
@@ -69,7 +69,7 @@ class Note extends EntityBase
     }
 
     /**
-     * @param \Titan\Bundle\CustomerBundle\Entity\Note\InteractionType $interactionType
+     * @param \TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType $interactionType
      */
     public function setInteractionType($interactionType)
     {
@@ -77,7 +77,7 @@ class Note extends EntityBase
     }
 
     /**
-     * @return \Titan\Bundle\CustomerBundle\Entity\Note\InteractionType
+     * @return \TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType
      */
     public function getInteractionType()
     {
