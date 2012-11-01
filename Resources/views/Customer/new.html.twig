@@ -1,8 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block innerbody %}
-    <form action="{{ path('customer_create') }}" method="post" {{ form_enctype(form) }}>
-        <h2> New Customer </h2>
+<form action="{{ path('customer_create') }}" method="post" {{ form_enctype(form) }}>
+    <h2> New Customer </h2>
+    <div class="well">
         <div class="row-fluid">
             <div class="span2">
                 {{ form_row(form.firstName, { attr: { class: 'input-medium' } }) }}
@@ -54,5 +55,6 @@
                 <button type="submit" class="btn">Create</button>
             </div>
         </div>
-    </form>
+    </div>
+</form>
 {% endblock %}

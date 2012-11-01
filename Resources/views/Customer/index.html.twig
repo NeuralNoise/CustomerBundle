@@ -19,14 +19,7 @@
             <td>{{ entity.emailAddress }}</td>
             <td>{{ entity.contactAddress.phone }}</td>
             <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('customer_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('customer_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                <a class="btn btn-mini" href="{{ path('customer_edit', { 'id': entity.id }) }}">EDIT</a>
             </td>
         </tr>
     {% endfor %}
