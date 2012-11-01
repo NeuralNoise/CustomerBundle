@@ -24,5 +24,9 @@ class TerraMarCustomerExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if (false === $config['enable_email_verification']) {
+            $container->removeDefinition('terramar.customer.subscriber.email_verification');
+        }
     }
 }
