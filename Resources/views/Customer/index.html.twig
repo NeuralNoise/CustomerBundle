@@ -1,8 +1,8 @@
 {% extends "::base.html.twig" %}
 
-{% block innerbody %}
-    <h2>Customers</h2>
+{% block title %}Customers{% endblock %}
 
+{% block content %}
     <table class="table table-striped">
     <thead>
         <tr>
@@ -26,8 +26,5 @@
     </tbody>
 </table>
 
-<a class="btn" href="{{ path('customer_new') }}">
-    Create a new entry
-</a>
-
+<a class="btn btn-primary" href="{{ path('customer_new') }}">New Customer</a>
 {% endblock %}
