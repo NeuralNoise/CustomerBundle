@@ -26,7 +26,7 @@ class VerifyEmailController extends Controller
         /** @var \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer */
         $customer = $em->getRepository('TerraMarCustomerBundle:Customer')->find($id);
 
-        if (!$customer || $customer->getEmailVerified()) {
+        if (!$customer/* || $customer->getEmailVerified()*/) {
             throw $this->createNotFoundException('Unable to locate Customer entity');
         }
 

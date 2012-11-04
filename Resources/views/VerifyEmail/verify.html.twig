@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Email verified.{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="span8 offset2">
+        <div class="main" style="padding-bottom: 20px">
+            <h1>{{ block('title') }}</h1>
+            <div class="spacer"></div>
+            <p>Thank you. Your email address has been verified.</p>
+            <div class="spacer"></div>
+        </div>
+        {{ block('footer') }}
+    </div>
+</div>
+{% endblock %}
