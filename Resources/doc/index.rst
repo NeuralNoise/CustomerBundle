@@ -38,6 +38,24 @@ Configuration
 4. Ensure the proper roles are in the hierarchy in security.yml. See ROLES REFERENCE below.
 
 
+Email Verification
+------------------
+
+You can disable email verification by specifying the following in your config.yml
+
+    terra_mar_customer:
+      enable_email_verification: false
+
+For an unauthenticated user to verify their email, you must add the correct exclude to your firewall in security.yml
+
+    firewalls:
+      unsecured:
+        pattern:  ^/verify-email/
+        security: false
+
+Email will be sent using the configured value in the parameter `orkestra.system_email_address`.
+
+
 Roles Reference
 ---------------
 
