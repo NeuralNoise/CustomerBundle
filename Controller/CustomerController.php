@@ -3,6 +3,7 @@
 namespace TerraMar\Bundle\CustomerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use TerraMar\Bundle\CustomerBundle\Controller\Customer\SearchController;
 use TerraMar\Bundle\CustomerBundle\Form\CustomerType;
 use Orkestra\Bundle\ApplicationBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;

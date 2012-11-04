@@ -1,6 +1,6 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Controller;
+namespace TerraMar\Bundle\CustomerBundle\Controller\Customer;
 
 use Symfony\Component\HttpFoundation\Request;
 use Orkestra\Bundle\ApplicationBundle\Controller\Controller;
@@ -25,10 +25,12 @@ class SearchController extends Controller
     /**
      * Display's the advanced search form.
      *
+     * @Route("s/advanced-search", name="customer_search_advanced")
      * @Template()
+     * @Method("GET")
      * @Secure(roles="ROLE_CUSTOMER_READ")
      */
-    public function showAdvancedSearchAction()
+    public function advancedSearchAction()
     {
         $form = $this->createForm(new AdvancedSearchType());
 
@@ -40,13 +42,15 @@ class SearchController extends Controller
     /**
      * Lists all Customer entities from an Advanced Search.
      *
-     * @Route("s/advanced-search", name="advanced_search")
-     * @Template("TerraMarCustomerBundle:Customer:index.html.twig")
+     * @Route("s/advanced-search")
+     * @Method("POST")
+     * @Template()
      * @Secure(roles="ROLE_CUSTOMER_READ")
      */
-    public function advancedSearchAction(Request $request)
+    public function doAdvancedSearchAction(Request $request)
     {
-        $form = $this->createForm(new AdvancedSearchType(), array(), array('office' => $office));
+        $form = $this->createForm(new AdvancedSearchType());
+
         $form->bind($request);
 
         /** @var \Doctrine\ORM\EntityManager $em */
@@ -66,38 +70,47 @@ class SearchController extends Controller
                 $qb->andWhere('c.firstName LIKE :firstName')
                     ->setParameter('firstName', $wrap($data['firstName']));
             }
+
             if ($data['lastName']) {
                 $qb->andWhere('c.lastName LIKE :lastName')
                     ->setParameter('lastName', $wrap($data['lastName']));
             }
+
             if ($data['phone']) {
                 $qb->andWhere('ca.phone LIKE :phone')
                     ->setParameter('phone', $wrap($data['phone']));
             }
+
             if ($data['emailAddress']) {
                 $qb->andWhere('c.emailAddress LIKE :emailAddress')
                     ->setParameter('emailAddress', $wrap($data['emailAddress']));
             }
+
             if ($data['streetAddress']) {
                 $qb->andWhere('ca.street LIKE :streetAddress')
                     ->setParameter('streetAddress', $wrap($data['streetAddress']));
             }
+
             if ($data['city']) {
                 $qb->andWhere('ca.city LIKE :city')
                     ->setParameter('city', $wrap($data['city']));
             }
+
             if ($data['state']) {
                 $qb->andWhere('ca.region = :state')
                     ->setParameter('state', $data['state']);
             }
+
             if ($data['zip']) {
                 $qb->andWhere('ca.postalCode LIKE :zip')
                     ->setParameter('zip', $wrap($data['zip']));
             }
+
             if ($data['customerStatus']) {
                 $qb->andWhere('c.status LIKE :customerStatus')
                     ->setParameter('customerStatus', $wrap($data['customerStatus']));
             }
+
             if ($data['lastModified']) {
                 $qb->andWhere('c.modifiedBy = :lastModified')
                     ->setParameter('lastModified', $data['lastModified']);
@@ -118,7 +131,7 @@ class SearchController extends Controller
     }
 
     /**
-     * @Route("/search/suggestions", name="customer_search_suggestions")
+     * @Route("s/search.{_format}", name="customer_search_suggestions", defaults={"_format"="html"})
      * @Template
      * @Secure(roles="ROLE_CUSTOMER_READ")
      */
@@ -138,7 +151,7 @@ class SearchController extends Controller
                 $qb->expr()->like('c.lastName', ':searchTerm'),
                 $qb->expr()->like('c.emailAddress', ':searchTerm')
             ))
-            ->setParameter('searchTerm', $query)
+            ->setParameter('searchTerm', '%' . $query . '%')
             ->setMaxResults(50)
             ->getQuery()
             ->getResult();
@@ -201,7 +214,7 @@ class SearchController extends Controller
 
                 $this->getSession()->getFlashBag()->set('success', 'The search results have been emailed successfully.');
 
-                return new JsonReloadResponse();
+                return $this->redirect($this->generateUrl('customers'));
             }
         }
 

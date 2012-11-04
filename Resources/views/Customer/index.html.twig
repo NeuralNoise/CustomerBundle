@@ -2,6 +2,19 @@
 
 {% block title %}Customers{% endblock %}
 
+{% block subheader %}
+    <form class="form-inline" action="{{ path('customer_search_suggestions') }}">
+        <input type="text" name="query" placeholder="Search ..." /> <button class="btn btn-primary">SEARCH</button> &nbsp; <a href="{{ path('customer_search_advanced') }}">Advanced</a>
+        <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Export <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{ path('customer_export_download') }}">Download</a></li>
+                <li><a href="{{ path('customer_export_email') }}">Email</a></li>
+            </ul>
+        </div>
+    </form>
+{% endblock %}
+
 {% block content %}
     <table class="table table-striped">
     <thead>
