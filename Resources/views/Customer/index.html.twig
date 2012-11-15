@@ -16,7 +16,8 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table table-striped">
+    {% if entities|length > 0 %}
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Name</th>
@@ -38,6 +39,10 @@
     {% endfor %}
     </tbody>
 </table>
+    {% else %}
+        <h4>No customers.</h4>
+        <div class="spacer"></div>
+    {% endif %}
 
 <a class="btn btn-primary" href="{{ path('customer_new') }}">New Customer</a>
 {% endblock %}
