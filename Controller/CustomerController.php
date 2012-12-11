@@ -124,6 +124,10 @@ class CustomerController extends Controller
         if ($form->isValid()) {
             $entity = $form->getData();
 
+            /** @var $factory \TerraMar\Bundle\CustomerBundle\Factory\CustomerFactoryInterface */
+            $factory = $this->get('terramar.customer.factory.customer');
+            $factory->buildCustomer($entity);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

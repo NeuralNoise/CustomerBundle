@@ -3,8 +3,10 @@ parameters:
   terramar.customer.helper.email_verification.class: TerraMar\Bundle\CustomerBundle\Helper\EmailVerificationHelper
   terramar.customer.helper.search_results.class:     TerraMar\Bundle\CustomerBundle\Helper\SearchResultsHelper
   terramar.customer.helper.export.class:             TerraMar\Bundle\CustomerBundle\Helper\ExportHelper
+  terramar.customer.factory.customer.class:          TerraMar\Bundle\CustomerBundle\Factory\CustomerFactory
 
 services:
+  # Helpers
   terramar.customer.helper.customer:
     class: %terramar.customer.helper.customer.class%
   terramar.customer.helper.email_verification:
@@ -15,7 +17,9 @@ services:
   terramar.customer.helper.export:
     class: %terramar.customer.helper.export.class%
 
-
+  # Factories
+  terramar.customer.factory.customer:
+    class: %terramar.customer.factory.customer.class%
 
   # Subscribers and Listeners
   terramar.customer.subscriber.user_accountability:
