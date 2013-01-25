@@ -27,15 +27,7 @@ Configuration
     parameters:
       orkestra.system_email_address:    { system@terramarwebdev.com: 'System Generated' }
 
-3. Register the DBAL types in config.yml
-
-    doctrine:
-      dbal:
-        types:
-          enum.terramar.customer.interaction_type: TerraMar\Bundle\CustomerBundle\DbalType\InteractionTypeEnumType
-          enum.terramar.customer.customer_status:  TerraMar\Bundle\CustomerBundle\DbalType\CustomerStatusEnumType
-
-4. Ensure the proper roles are in the hierarchy in security.yml. See ROLES REFERENCE below.
+3. Ensure the proper roles are in the hierarchy in security.yml. See ROLES REFERENCE below.
 
 
 Email Verification
