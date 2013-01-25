@@ -2,14 +2,14 @@
 
 namespace TerraMar\Bundle\CustomerBundle\DbalType;
 
-use Orkestra\Common\DBAL\Types\EnumTypeBase;
+use Orkestra\Common\DbalType\AbstractEnumType;
 
 /**
  * Interaction Type EnumType
  *
  * Provides integration for the Interaction Type enumeration and Doctrine DBAL
  */
-class InteractionTypeEnumType extends EnumTypeBase
+class InteractionTypeEnumType extends AbstractEnumType
 {
     /**
      * @var string The unique name for this EnumType

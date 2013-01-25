@@ -2,14 +2,14 @@
 
 namespace TerraMar\Bundle\CustomerBundle\DbalType;
 
-use Orkestra\Common\DBAL\Types\EnumTypeBase;
+use Orkestra\Common\DbalType\AbstractEnumType;
 
 /**
  * Customer Status EnumType
  *
  * Provides integration for the Customer Status enumeration and Doctrine DBAL
  */
-class CustomerStatusEnumType extends EnumTypeBase
+class CustomerStatusEnumType extends AbstractEnumType
 {
     /**
      * @var string The unique name for this EnumType
