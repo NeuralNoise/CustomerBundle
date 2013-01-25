@@ -5,7 +5,7 @@ namespace TerraMar\Bundle\CustomerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-use Orkestra\Common\Entity\EntityBase;
+use Orkestra\Common\Entity\AbstractEntity;
 
 /**
  * A customer
@@ -13,7 +13,7 @@ use Orkestra\Common\Entity\EntityBase;
  * @ORM\Entity
  * @ORM\Table(name="terramar_customers")
  */
-class Customer extends EntityBase
+class Customer extends AbstractEntity
 {
     /**
      * @var string

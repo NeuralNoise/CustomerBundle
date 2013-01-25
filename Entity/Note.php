@@ -5,7 +5,7 @@ namespace TerraMar\Bundle\CustomerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
-use Orkestra\Common\Entity\EntityBase;
+use Orkestra\Common\Entity\AbstractEntity;
 
 /**
  * A customer
@@ -13,7 +13,7 @@ use Orkestra\Common\Entity\EntityBase;
  * @ORM\Entity
  * @ORM\Table(name="terramar_notes")
  */
-class Note extends EntityBase
+class Note extends AbstractEntity
 {
     /**
      * @var string
