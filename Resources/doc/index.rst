@@ -35,7 +35,7 @@ Email Verification
 
 You can disable email verification by specifying the following in your config.yml
 
-    terra_mar_customer:
+    terramar_customer:
       enable_email_verification: false
 
 For an unauthenticated user to verify their email, you must add the correct exclude to your firewall in security.yml
