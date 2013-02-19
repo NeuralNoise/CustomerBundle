@@ -1,16 +1,16 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Helper;
+namespace Terramar\Bundle\CustomerBundle\Helper;
 
-use TerraMar\Bundle\CustomerBundle\Entity\Customer;
-use TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus;
+use Terramar\Bundle\CustomerBundle\Entity\Customer;
+use Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus;
 
 class CustomerHelper implements CustomerHelperInterface
 {
     /**
      * Cancels a customer
      *
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer $customer
      */
     public function deactivateCustomer(Customer $customer)
     {
@@ -20,7 +20,7 @@ class CustomerHelper implements CustomerHelperInterface
     /**
      * Activates a customer
      *
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer $customer
      */
     public function activateCustomer(Customer $customer)
     {
@@ -30,7 +30,7 @@ class CustomerHelper implements CustomerHelperInterface
     /**
      * Returns the email verification hash for a given customer
      *
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer $customer
      *
      * @return string
      */

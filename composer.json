@@ -7,7 +7,7 @@
         "orkestra/application-bundle": "dev-develop"
     },
     "autoload": {
-        "psr-0": { "TerraMar\\Bundle\\CustomerBundle": "" }
+        "psr-0": { "Terramar\\Bundle\\CustomerBundle": "" }
     },
-    "target-dir": "TerraMar/Bundle/CustomerBundle"
+    "target-dir": "Terramar/Bundle/CustomerBundle"
 }

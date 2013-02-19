@@ -1,17 +1,17 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Factory;
+namespace Terramar\Bundle\CustomerBundle\Factory;
 
-use TerraMar\Bundle\CustomerBundle\Entity\Customer;
+use Terramar\Bundle\CustomerBundle\Entity\Customer;
 
 interface CustomerFactoryInterface
 {
     /**
      * Builds the given Customer
      *
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer $customer
      *
-     * @return \TerraMar\Bundle\CustomerBundle\Entity\Customer
+     * @return \Terramar\Bundle\CustomerBundle\Entity\Customer
      */
     function buildCustomer(Customer $customer);
 }

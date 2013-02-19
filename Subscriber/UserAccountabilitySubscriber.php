@@ -1,14 +1,14 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Subscriber;
+namespace Terramar\Bundle\CustomerBundle\Subscriber;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
-use TerraMar\Bundle\CustomerBundle\Entity\Note;
-use TerraMar\Bundle\CustomerBundle\Entity\Customer;
+use Terramar\Bundle\CustomerBundle\Entity\Note;
+use Terramar\Bundle\CustomerBundle\Entity\Customer;
 use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\ORM\Events;
 

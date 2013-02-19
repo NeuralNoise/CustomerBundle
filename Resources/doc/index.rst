@@ -18,8 +18,8 @@ Configuration
 
 1. Add bundles routes in routing.yml
 
-    TerraMarCustomerBundle:
-      resource: "@TerraMarCustomerBundle/Resources/config/routing.yml"
+    TerramarCustomerBundle:
+      resource: "@TerramarCustomerBundle/Resources/config/routing.yml"
 
 
 2. Ensure that `orkestra.system_email_address` has a value in parameters.yml. An array can be used, see Swift_Message::setFrom

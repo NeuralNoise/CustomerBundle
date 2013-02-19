@@ -1,13 +1,13 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Subscriber;
+namespace Terramar\Bundle\CustomerBundle\Subscriber;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use TerraMar\Bundle\CustomerBundle\Entity\Customer;
+use Terramar\Bundle\CustomerBundle\Entity\Customer;
 
 class EmailVerificationSubscriber implements EventSubscriber
 {
@@ -32,7 +32,7 @@ class EmailVerificationSubscriber implements EventSubscriber
     protected $engine;
 
     /**
-     * @var \TerraMar\Bundle\CustomerBundle\Helper\EmailVerificationHelperInterface
+     * @var \Terramar\Bundle\CustomerBundle\Helper\EmailVerificationHelperInterface
      */
     protected $helper;
 
@@ -103,7 +103,7 @@ class EmailVerificationSubscriber implements EventSubscriber
 
         $link = $this->router->generate('customer_verify_email', array('id' => $customer->getId(), 'hash' => $this->helper->getEmailVerificationHash($customer)), true);
 
-        $body = $this->engine->render('TerraMarCustomerBundle:VerifyEmail:email_template.html.twig', array('customer' => $customer, 'link' => $link));
+        $body = $this->engine->render('TerramarCustomerBundle:VerifyEmail:email_template.html.twig', array('customer' => $customer, 'link' => $link));
 
         $message = new \Swift_Message();
         $message->setSubject('Verify your email')

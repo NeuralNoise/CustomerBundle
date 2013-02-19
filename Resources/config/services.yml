@@ -1,9 +1,9 @@
 parameters:
-  terramar.customer.helper.customer.class:           TerraMar\Bundle\CustomerBundle\Helper\CustomerHelper
-  terramar.customer.helper.email_verification.class: TerraMar\Bundle\CustomerBundle\Helper\EmailVerificationHelper
-  terramar.customer.helper.search_results.class:     TerraMar\Bundle\CustomerBundle\Helper\SearchResultsHelper
-  terramar.customer.helper.export.class:             TerraMar\Bundle\CustomerBundle\Helper\ExportHelper
-  terramar.customer.factory.customer.class:          TerraMar\Bundle\CustomerBundle\Factory\CustomerFactory
+  terramar.customer.helper.customer.class:           Terramar\Bundle\CustomerBundle\Helper\CustomerHelper
+  terramar.customer.helper.email_verification.class: Terramar\Bundle\CustomerBundle\Helper\EmailVerificationHelper
+  terramar.customer.helper.search_results.class:     Terramar\Bundle\CustomerBundle\Helper\SearchResultsHelper
+  terramar.customer.helper.export.class:             Terramar\Bundle\CustomerBundle\Helper\ExportHelper
+  terramar.customer.factory.customer.class:          Terramar\Bundle\CustomerBundle\Factory\CustomerFactory
 
 services:
   # Helpers
@@ -24,13 +24,13 @@ services:
   # Subscribers and Listeners
   terramar.customer.subscriber.user_accountability:
     public: false
-    class: TerraMar\Bundle\CustomerBundle\Subscriber\UserAccountabilitySubscriber
+    class: Terramar\Bundle\CustomerBundle\Subscriber\UserAccountabilitySubscriber
     arguments: [ @service_container ]
     tags:
       - { name: doctrine.event_subscriber }
   terramar.customer.subscriber.email_verification:
     public: false
-    class: TerraMar\Bundle\CustomerBundle\Subscriber\EmailVerificationSubscriber
+    class: Terramar\Bundle\CustomerBundle\Subscriber\EmailVerificationSubscriber
     arguments: [ @service_container ]
     tags:
       - { name: doctrine.event_subscriber }

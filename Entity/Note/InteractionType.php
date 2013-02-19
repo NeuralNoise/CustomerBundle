@@ -1,6 +1,6 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Entity\Note;
+namespace Terramar\Bundle\CustomerBundle\Entity\Note;
 
 use Orkestra\Common\Type\Enum;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\DbalType;
+namespace Terramar\Bundle\CustomerBundle\DbalType;
 
 use Orkestra\Common\DbalType\AbstractEnumType;
 
@@ -19,5 +19,5 @@ class InteractionTypeEnumType extends AbstractEnumType
     /**
      * @var string The fully qualified class name of the Enum that this class wraps
      */
-    protected $class = 'TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType';
+    protected $class = 'Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType';
 }

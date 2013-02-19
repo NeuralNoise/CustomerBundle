@@ -1,9 +1,9 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Entity;
+namespace Terramar\Bundle\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType;
+use Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
 use Orkestra\Common\Entity\AbstractEntity;
 
@@ -30,7 +30,7 @@ class Note extends AbstractEntity
     protected $body = '';
 
     /**
-     * @var \TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType
+     * @var \Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType
      *
      * @ORM\Column(name="interaction_type", type="enum.terramar.customer.interaction_type")
      */
@@ -69,7 +69,7 @@ class Note extends AbstractEntity
     }
 
     /**
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType $interactionType
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType $interactionType
      */
     public function setInteractionType($interactionType)
     {
@@ -77,7 +77,7 @@ class Note extends AbstractEntity
     }
 
     /**
-     * @return \TerraMar\Bundle\CustomerBundle\Entity\Note\InteractionType
+     * @return \Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType
      */
     public function getInteractionType()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Entity;
+namespace Terramar\Bundle\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
@@ -53,7 +53,7 @@ class Customer extends AbstractEntity
     protected $subscribed;
 
     /**
-     * @var \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @var \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
      *
      * @ORM\Column(name="status", type="enum.terramar.customer.customer_status")
      */
@@ -94,7 +94,7 @@ class Customer extends AbstractEntity
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="TerraMar\Bundle\CustomerBundle\Entity\Note", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Terramar\Bundle\CustomerBundle\Entity\Note", cascade={"persist"})
      * @ORM\JoinTable(name="terramar_customers_notes",
      *      joinColumns={@ORM\JoinColumn(name="customer_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="note_id", referencedColumnName="id", unique=true)}
@@ -260,7 +260,7 @@ class Customer extends AbstractEntity
     }
 
     /**
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus $status
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus $status
      */
     public function setStatus($status)
     {
@@ -268,7 +268,7 @@ class Customer extends AbstractEntity
     }
 
     /**
-     * @return \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @return \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
      */
     public function getStatus()
     {
