@@ -1,17 +1,17 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Controller;
+namespace Terramar\Bundle\CustomerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use TerraMar\Bundle\CustomerBundle\Controller\Customer\SearchController;
-use TerraMar\Bundle\CustomerBundle\Form\CustomerType;
+use Terramar\Bundle\CustomerBundle\Controller\Customer\SearchController;
+use Terramar\Bundle\CustomerBundle\Form\CustomerType;
 use Orkestra\Bundle\ApplicationBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
-use TerraMar\Bundle\CustomerBundle\Entity\Customer;
+use Terramar\Bundle\CustomerBundle\Entity\Customer;
 
 /**
  * Customer controller.
@@ -32,7 +32,7 @@ class CustomerController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('TerraMarCustomerBundle:Customer')->findBy(array('active' => true), null, 50);
+        $entities = $em->getRepository('TerramarCustomerBundle:Customer')->findBy(array('active' => true), null, 50);
 
         $this->get('terramar.customer.helper.search_results')->setLastSearchResults(SearchController::LAST_SEARCH_KEY, $entities);
 
@@ -45,7 +45,7 @@ class CustomerController extends Controller
      * Lists all recently added Customer entities.
      *
      * @Route("s/recent", name="customers_recent")
-     * @Template("TerraMarCustomerBundle:Customer:index.html.twig")
+     * @Template("TerramarCustomerBundle:Customer:index.html.twig")
      * @Secure(roles="ROLE_CUSTOMER_READ")
      */
     public function recentAction()
@@ -55,7 +55,7 @@ class CustomerController extends Controller
 
         $entities = $em->createQueryBuilder()
             ->select('c')
-            ->from('TerraMarCustomerBundle:Customer', 'c')
+            ->from('TerramarCustomerBundle:Customer', 'c')
             ->where('c.active = true')
             ->orderBy('c.dateCreated', 'DESC')
             ->setMaxResults(50)
@@ -81,7 +81,7 @@ class CustomerController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $customer = $em->getRepository('TerraMarCustomerBundle:Customer')->find($id);
+        $customer = $em->getRepository('TerramarCustomerBundle:Customer')->find($id);
 
         if (!$customer) {
             throw $this->createNotFoundException('Unable to locate Customer');
@@ -112,7 +112,7 @@ class CustomerController extends Controller
      * Shows a form to create a new Customer
      *
      * @Route("/create", name="customer_create")
-     * @Template("TerraMarCustomerBundle:Customer:new.html.twig")
+     * @Template("TerramarCustomerBundle:Customer:new.html.twig")
      * @Method("POST")
      * @Secure(roles="ROLE_CUSTOMER_WRITE")
      */
@@ -124,7 +124,7 @@ class CustomerController extends Controller
         if ($form->isValid()) {
             $entity = $form->getData();
 
-            /** @var $factory \TerraMar\Bundle\CustomerBundle\Factory\CustomerFactoryInterface */
+            /** @var $factory \Terramar\Bundle\CustomerBundle\Factory\CustomerFactoryInterface */
             $factory = $this->get('terramar.customer.factory.customer');
             $factory->buildCustomer($entity);
 
@@ -153,7 +153,7 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TerraMar\Bundle\CustomerBundle\Entity\Customer')->find($id);
+        $entity = $em->getRepository('Terramar\Bundle\CustomerBundle\Entity\Customer')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to locate Customer');
@@ -179,7 +179,7 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TerraMar\Bundle\CustomerBundle\Entity\Customer')->find($id);
+        $entity = $em->getRepository('Terramar\Bundle\CustomerBundle\Entity\Customer')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to locate Customer');
@@ -197,7 +197,7 @@ class CustomerController extends Controller
      * Updates an existing Customer
      *
      * @Route("/{id}/update", name="customer_update")
-     * @Template("TerraMarCustomerBundle:Customer:edit.html.twig")
+     * @Template("TerramarCustomerBundle:Customer:edit.html.twig")
      * @Method("POST")
      * @Secure(roles="ROLE_CUSTOMER_WRITE")
      */
@@ -205,7 +205,7 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('TerraMar\Bundle\CustomerBundle\Entity\Customer')->find($id);
+        $entity = $em->getRepository('Terramar\Bundle\CustomerBundle\Entity\Customer')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to locate Customer');
@@ -239,7 +239,7 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $customer = $em->getRepository('TerraMarCustomerBundle:Customer')->find($id);
+        $customer = $em->getRepository('TerramarCustomerBundle:Customer')->find($id);
 
         if (!$customer) {
             throw $this->createNotFoundException('Unable to find Customer entity.');
@@ -265,7 +265,7 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $customer = $em->getRepository('TerraMarCustomerBundle:Customer')->find($id);
+        $customer = $em->getRepository('TerramarCustomerBundle:Customer')->find($id);
 
         if (!$customer) {
             throw $this->createNotFoundException('Unable to find Customer entity.');

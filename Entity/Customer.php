@@ -1,11 +1,11 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Entity;
+namespace Terramar\Bundle\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Orkestra\Bundle\ApplicationBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-use Orkestra\Common\Entity\EntityBase;
+use Orkestra\Common\Entity\AbstractEntity;
 
 /**
  * A customer
@@ -13,7 +13,7 @@ use Orkestra\Common\Entity\EntityBase;
  * @ORM\Entity
  * @ORM\Table(name="terramar_customers")
  */
-class Customer extends EntityBase
+class Customer extends AbstractEntity
 {
     /**
      * @var string
@@ -53,7 +53,7 @@ class Customer extends EntityBase
     protected $subscribed;
 
     /**
-     * @var \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @var \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
      *
      * @ORM\Column(name="status", type="enum.terramar.customer.customer_status")
      */
@@ -94,7 +94,7 @@ class Customer extends EntityBase
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="TerraMar\Bundle\CustomerBundle\Entity\Note", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Terramar\Bundle\CustomerBundle\Entity\Note", cascade={"persist"})
      * @ORM\JoinTable(name="terramar_customers_notes",
      *      joinColumns={@ORM\JoinColumn(name="customer_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="note_id", referencedColumnName="id", unique=true)}
@@ -260,7 +260,7 @@ class Customer extends EntityBase
     }
 
     /**
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus $status
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus $status
      */
     public function setStatus($status)
     {
@@ -268,7 +268,7 @@ class Customer extends EntityBase
     }
 
     /**
-     * @return \TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @return \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
      */
     public function getStatus()
     {

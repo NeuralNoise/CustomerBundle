@@ -1,23 +1,23 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\DbalType;
+namespace Terramar\Bundle\CustomerBundle\DbalType;
 
-use Orkestra\Common\DBAL\Types\EnumTypeBase;
+use Orkestra\Common\DbalType\AbstractEnumType;
 
 /**
  * Customer Status EnumType
  *
  * Provides integration for the Customer Status enumeration and Doctrine DBAL
  */
-class CustomerStatusEnumType extends EnumTypeBase
+class CustomerStatusEnumType extends AbstractEnumType
 {
     /**
      * @var string The unique name for this EnumType
      */
-    protected $_name = 'enum.terramar.customer.customer_status';
+    protected $name = 'enum.terramar.customer.customer_status';
 
     /**
      * @var string The fully qualified class name of the Enum that this class wraps
      */
-    protected $_class = 'TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus';
+    protected $class = 'Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus';
 }

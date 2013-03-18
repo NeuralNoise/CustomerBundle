@@ -1,15 +1,15 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Helper;
+namespace Terramar\Bundle\CustomerBundle\Helper;
 
-use TerraMar\Bundle\CustomerBundle\Entity\Customer;
+use Terramar\Bundle\CustomerBundle\Entity\Customer;
 
 class EmailVerificationHelper implements EmailVerificationHelperInterface
 {
     /**
      * Returns the email verification hash for a given customer
      *
-     * @param \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer $customer
      *
      * @return string
      */

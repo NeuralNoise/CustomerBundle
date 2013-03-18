@@ -1,6 +1,6 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Helper;
+namespace Terramar\Bundle\CustomerBundle\Helper;
 
 interface SearchResultsHelperInterface
 {

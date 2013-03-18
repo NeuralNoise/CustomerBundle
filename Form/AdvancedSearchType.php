@@ -1,6 +1,6 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Form;
+namespace Terramar\Bundle\CustomerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,7 +33,7 @@ class AdvancedSearchType extends AbstractType
             ->add('customerStatus', 'enum', array(
                 'label' => 'Customer Status',
                 'required' => false,
-                'enum' => 'TerraMar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus'
+                'enum' => 'Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus'
             ))
             ->add('lastModified', 'entity', array(
                 'label' => 'Last Person to Modify',

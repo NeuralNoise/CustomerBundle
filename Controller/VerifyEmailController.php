@@ -1,6 +1,6 @@
 <?php
 
-namespace TerraMar\Bundle\CustomerBundle\Controller;
+namespace Terramar\Bundle\CustomerBundle\Controller;
 
 use Orkestra\Bundle\ApplicationBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +23,8 @@ class VerifyEmailController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        /** @var \TerraMar\Bundle\CustomerBundle\Entity\Customer $customer */
-        $customer = $em->getRepository('TerraMarCustomerBundle:Customer')->find($id);
+        /** @var \Terramar\Bundle\CustomerBundle\Entity\Customer $customer */
+        $customer = $em->getRepository('TerramarCustomerBundle:Customer')->find($id);
 
         if (!$customer || $customer->getEmailVerified()) {
             throw $this->createNotFoundException('Unable to locate Customer entity');
