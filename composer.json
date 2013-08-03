@@ -1,13 +1,21 @@
 {
-    "name": "terramar/customer-bundle",
-    "type": "symfony-bundle",
-    "require": {
-        "php": ">=5.3.0",
-        "orkestra/common": "1.0.*",
-        "orkestra/application-bundle": "dev-develop"
-    },
-    "autoload": {
-        "psr-0": { "Terramar\\Bundle\\CustomerBundle": "" }
-    },
-    "target-dir": "Terramar/Bundle/CustomerBundle"
+  "name": "terramar/customer-bundle",
+  "type": "symfony-bundle",
+  "require": {
+    "php": ">=5.3.3",
+    "orkestra/common": "1.0.*",
+    "orkestra/application-bundle": "1.0.*@dev"
+  },
+  "require-dev": {
+    "symfony/symfony": "~2.3"
+  },
+  "autoload": {
+    "psr-0": { "Terramar\\Bundle\\CustomerBundle": "" }
+  },
+  "target-dir": "Terramar/Bundle/CustomerBundle",
+  "extra": {
+    "branch-alias": {
+      "dev-develop": "1.0-dev"
+    }
+  }
 }
