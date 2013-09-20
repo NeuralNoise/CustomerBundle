@@ -1,6 +1,6 @@
 <?php
 
-namespace Terramar\Bundle\CustomerBundle\Entity\Customer;
+namespace Terramar\Bundle\CustomerBundle\Model\Customer;
 
 use Orkestra\Common\Type\Enum;
 

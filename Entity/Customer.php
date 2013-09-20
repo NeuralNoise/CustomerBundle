@@ -3,9 +3,13 @@
 namespace Terramar\Bundle\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Orkestra\Bundle\ApplicationBundle\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
 use Orkestra\Common\Entity\AbstractEntity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Orkestra\Bundle\ApplicationBundle\Model\Contact\AddressInterface;
+use Orkestra\Bundle\ApplicationBundle\Model\UserInterface;
+use Terramar\Bundle\CustomerBundle\Model\Customer\CustomerStatus;
+use Terramar\Bundle\CustomerBundle\Model\CustomerInterface;
+use Terramar\Bundle\CustomerBundle\Model\NoteInterface;
 
 /**
  * A customer
@@ -13,7 +17,7 @@ use Orkestra\Common\Entity\AbstractEntity;
  * @ORM\Entity
  * @ORM\Table(name="terramar_customers")
  */
-class Customer extends AbstractEntity
+class Customer extends AbstractEntity implements CustomerInterface
 {
     /**
      * @var string
@@ -53,7 +57,7 @@ class Customer extends AbstractEntity
     protected $subscribed;
 
     /**
-     * @var \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @var \Terramar\Bundle\CustomerBundle\Model\Customer\CustomerStatus
      *
      * @ORM\Column(name="status", type="enum.terramar.customer.customer_status")
      */
@@ -62,7 +66,7 @@ class Customer extends AbstractEntity
     /**
      * @var \Orkestra\Bundle\ApplicationBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Model\UserInterface")
      * @ORM\JoinColumn(name="created_by_id", referencedColumnName="id")
      */
     protected $createdBy;
@@ -70,7 +74,7 @@ class Customer extends AbstractEntity
     /**
      * @var \Orkestra\Bundle\ApplicationBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Model\UserInterface")
      * @ORM\JoinColumn(name="modified_by_id", referencedColumnName="id")
      */
     protected $modifiedBy;
@@ -78,7 +82,7 @@ class Customer extends AbstractEntity
     /**
      * @var \Orkestra\Bundle\ApplicationBundle\Entity\Contact\Address
      *
-     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Entity\Contact\Address", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Model\Contact\AddressInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="contact_address_id", referencedColumnName="id")
      */
     protected $contactAddress;
@@ -86,7 +90,7 @@ class Customer extends AbstractEntity
     /**
      * @var \Orkestra\Bundle\ApplicationBundle\Entity\Contact\Address
      *
-     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Entity\Contact\Address", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Model\Contact\AddressInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="billing_address_id", referencedColumnName="id")
      */
     protected $billingAddress;
@@ -94,7 +98,7 @@ class Customer extends AbstractEntity
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Terramar\Bundle\CustomerBundle\Entity\Note", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Terramar\Bundle\CustomerBundle\Model\NoteInterface", cascade={"persist"})
      * @ORM\JoinTable(name="terramar_customers_notes",
      *      joinColumns={@ORM\JoinColumn(name="customer_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="note_id", referencedColumnName="id", unique=true)}
@@ -108,7 +112,7 @@ class Customer extends AbstractEntity
     public function __construct()
     {
         $this->notes = new ArrayCollection();
-        $this->status = new Customer\CustomerStatus(Customer\CustomerStatus::ACTIVE);
+        $this->status = new CustomerStatus(CustomerStatus::ACTIVE);
     }
 
     /**
@@ -122,7 +126,7 @@ class Customer extends AbstractEntity
     /**
      * @param \Orkestra\Bundle\ApplicationBundle\Entity\Contact\Address $billingAddress
      */
-    public function setBillingAddress($billingAddress)
+    public function setBillingAddress(AddressInterface $billingAddress)
     {
         $this->billingAddress = $billingAddress;
     }
@@ -138,7 +142,7 @@ class Customer extends AbstractEntity
     /**
      * @param \Orkestra\Bundle\ApplicationBundle\Entity\Contact\Address $contactAddress
      */
-    public function setContactAddress($contactAddress)
+    public function setContactAddress(AddressInterface $contactAddress)
     {
         $this->contactAddress = $contactAddress;
     }
@@ -206,7 +210,7 @@ class Customer extends AbstractEntity
     /**
      * @return boolean
      */
-    public function getEmailVerified()
+    public function isEmailVerified()
     {
         return $this->emailVerified;
     }
@@ -230,7 +234,7 @@ class Customer extends AbstractEntity
     /**
      * @param Note $note
      */
-    public function addNote(Note $note)
+    public function addNote(NoteInterface $note)
     {
         $this->notes->add($note);
     }
@@ -260,7 +264,7 @@ class Customer extends AbstractEntity
     }
 
     /**
-     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus $status
+     * @param \Terramar\Bundle\CustomerBundle\MOdel\Customer\CustomerStatus $status
      */
     public function setStatus($status)
     {
@@ -268,7 +272,7 @@ class Customer extends AbstractEntity
     }
 
     /**
-     * @return \Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus
+     * @return \Terramar\Bundle\CustomerBundle\Model\Customer\CustomerStatus
      */
     public function getStatus()
     {
@@ -278,7 +282,7 @@ class Customer extends AbstractEntity
     /**
      * @param \Orkestra\Bundle\ApplicationBundle\Entity\User $createdBy
      */
-    public function setCreatedBy(User $createdBy)
+    public function setCreatedBy(UserInterface $createdBy)
     {
         $this->createdBy = $createdBy;
     }
@@ -294,7 +298,7 @@ class Customer extends AbstractEntity
     /**
      * @param \Orkestra\Bundle\ApplicationBundle\Entity\User $modifiedBy
      */
-    public function setModifiedBy(User $modifiedBy)
+    public function setModifiedBy(UserInterface $modifiedBy)
     {
         $this->modifiedBy = $modifiedBy;
     }

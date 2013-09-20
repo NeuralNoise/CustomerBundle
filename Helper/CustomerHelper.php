@@ -2,7 +2,7 @@
 
 namespace Terramar\Bundle\CustomerBundle\Helper;
 
-use Terramar\Bundle\CustomerBundle\Entity\Customer;
+use Terramar\Bundle\CustomerBundle\Model\CustomerInterface;
 use Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus;
 
 class CustomerHelper implements CustomerHelperInterface
@@ -10,9 +10,9 @@ class CustomerHelper implements CustomerHelperInterface
     /**
      * Cancels a customer
      *
-     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \Terramar\Bundle\CustomerBundle\Model\CustomerInterface $customer
      */
-    public function deactivateCustomer(Customer $customer)
+    public function deactivateCustomer(CustomerInterface $customer)
     {
         $customer->setStatus(new CustomerStatus(CustomerStatus::INACTIVE));
     }
@@ -20,9 +20,9 @@ class CustomerHelper implements CustomerHelperInterface
     /**
      * Activates a customer
      *
-     * @param \Terramar\Bundle\CustomerBundle\Entity\Customer $customer
+     * @param \Terramar\Bundle\CustomerBundle\Model\CustomerInterface $customer
      */
-    public function activateCustomer(Customer $customer)
+    public function activateCustomer(CustomerInterface $customer)
     {
         $customer->setStatus(new CustomerStatus(CustomerStatus::ACTIVE));
     }

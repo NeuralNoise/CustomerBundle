@@ -3,9 +3,10 @@
 namespace Terramar\Bundle\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType;
-use Orkestra\Bundle\ApplicationBundle\Entity\User;
+use Orkestra\Bundle\ApplicationBundle\Model\UserInterface;
 use Orkestra\Common\Entity\AbstractEntity;
+use Terramar\Bundle\CustomerBundle\Model\Note\InteractionType;
+use Terramar\Bundle\CustomerBundle\Model\NoteInterface;
 
 /**
  * A customer
@@ -13,7 +14,7 @@ use Orkestra\Common\Entity\AbstractEntity;
  * @ORM\Entity
  * @ORM\Table(name="terramar_notes")
  */
-class Note extends AbstractEntity
+class Note extends AbstractEntity implements NoteInterface
 {
     /**
      * @var string
@@ -30,7 +31,7 @@ class Note extends AbstractEntity
     protected $body = '';
 
     /**
-     * @var \Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType
+     * @var \Terramar\Bundle\CustomerBundle\Model\Note\InteractionType
      *
      * @ORM\Column(name="interaction_type", type="enum.terramar.customer.interaction_type")
      */
@@ -39,7 +40,7 @@ class Note extends AbstractEntity
     /**
      * @var \Orkestra\Bundle\ApplicationBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Orkestra\Bundle\ApplicationBundle\Model\UserInterface")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $createdBy;
@@ -69,7 +70,7 @@ class Note extends AbstractEntity
     }
 
     /**
-     * @param \Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType $interactionType
+     * @param \Terramar\Bundle\CustomerBundle\Model\Note\InteractionType $interactionType
      */
     public function setInteractionType($interactionType)
     {
@@ -77,7 +78,7 @@ class Note extends AbstractEntity
     }
 
     /**
-     * @return \Terramar\Bundle\CustomerBundle\Entity\Note\InteractionType
+     * @return \Terramar\Bundle\CustomerBundle\Model\Note\InteractionType
      */
     public function getInteractionType()
     {
@@ -101,15 +102,15 @@ class Note extends AbstractEntity
     }
 
     /**
-     * @param \Orkestra\Bundle\ApplicationBundle\Entity\User $createdBy
+     * @param \Orkestra\Bundle\ApplicationBundle\Model\UserInterface $createdBy
      */
-    public function setCreatedBy(User $createdBy)
+    public function setCreatedBy(UserInterface $createdBy)
     {
         $this->createdBy = $createdBy;
     }
 
     /**
-     * @return \Orkestra\Bundle\ApplicationBundle\Entity\User
+     * @return \Orkestra\Bundle\ApplicationBundle\Model\UserInterface
      */
     public function getCreatedBy()
     {

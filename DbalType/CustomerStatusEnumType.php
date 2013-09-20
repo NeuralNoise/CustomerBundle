@@ -19,5 +19,5 @@ class CustomerStatusEnumType extends AbstractEnumType
     /**
      * @var string The fully qualified class name of the Enum that this class wraps
      */
-    protected $class = 'Terramar\Bundle\CustomerBundle\Entity\Customer\CustomerStatus';
+    protected $class = 'Terramar\Bundle\CustomerBundle\Model\Customer\CustomerStatus';
 }
