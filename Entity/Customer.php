@@ -22,6 +22,13 @@ class Customer extends AbstractEntity implements CustomerInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="company_name", type="string")
+     */
+    protected $companyName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="first_name", type="string")
      */
     protected $firstName;
@@ -310,4 +317,22 @@ class Customer extends AbstractEntity implements CustomerInterface
     {
         return $this->modifiedBy;
     }
+
+    /**
+     * @param string $companyName
+     */
+    public function setCompanyName($companyName)
+    {
+        $this->companyName = $companyName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompanyName()
+    {
+        return $this->companyName;
+    }
+
+    
 }
