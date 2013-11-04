@@ -24,28 +24,28 @@ class Customer extends AbstractEntity implements CustomerInterface
      *
      * @ORM\Column(name="company_name", type="string")
      */
-    protected $companyName;
+    protected $companyName = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="first_name", type="string")
      */
-    protected $firstName;
+    protected $firstName = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="last_name", type="string")
      */
-    protected $lastName;
+    protected $lastName = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string")
      */
-    protected $emailAddress;
+    protected $emailAddress = '';
 
     /**
      * @var bool
@@ -61,7 +61,7 @@ class Customer extends AbstractEntity implements CustomerInterface
      *
      * @ORM\Column(name="subscribed", type="boolean")
      */
-    protected $subscribed;
+    protected $subscribed = false;
 
     /**
      * @var \Terramar\Bundle\CustomerBundle\Model\Customer\CustomerStatus
@@ -171,7 +171,7 @@ class Customer extends AbstractEntity implements CustomerInterface
             $this->emailVerified = false;
         }
 
-        $this->emailAddress = $emailAddress;
+        $this->emailAddress = (string) $emailAddress;
     }
 
     /**
@@ -187,7 +187,7 @@ class Customer extends AbstractEntity implements CustomerInterface
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;
+        $this->firstName = (string) $firstName;
     }
 
     /**
@@ -203,7 +203,7 @@ class Customer extends AbstractEntity implements CustomerInterface
      */
     public function setLastName($lastName)
     {
-        $this->lastName = $lastName;
+        $this->lastName = (string) $lastName;
     }
 
     /**
@@ -334,5 +334,5 @@ class Customer extends AbstractEntity implements CustomerInterface
         return $this->companyName;
     }
 
-    
+
 }
