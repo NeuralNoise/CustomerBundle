@@ -48,6 +48,20 @@ class Customer extends AbstractEntity implements CustomerInterface
     protected $emailAddress = '';
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_of_birth", type="date", nullable=true)
+     */
+    protected $dateOfBirth;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ssn", type="string")
+     */
+    protected $ssn;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="email_verified", type="boolean")
@@ -334,5 +348,35 @@ class Customer extends AbstractEntity implements CustomerInterface
         return $this->companyName;
     }
 
+    /**
+     * @param \DateTime $dateOfBirth
+     */
+    public function setDateOfBirth(\DateTime $dateOfBirth = null)
+    {
+        $this->dateOfBirth = $dateOfBirth;
+    }
 
+    /**
+     * @return \DateTime
+     */
+    public function getDateOfBirth()
+    {
+        return $this->dateOfBirth;
+    }
+
+    /**
+     * @param string $ssn
+     */
+    public function setSsn($ssn)
+    {
+        $this->ssn = $ssn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSsn()
+    {
+        return $this->ssn;
+    }
 }
