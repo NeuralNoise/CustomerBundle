@@ -3,6 +3,7 @@
 namespace Terramar\Bundle\CustomerBundle\Helper;
 
 use Symfony\Component\Form\Util\PropertyPath;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class ExportHelper implements ExportHelperInterface
 {
@@ -27,15 +28,12 @@ class ExportHelper implements ExportHelperInterface
         $fp = tmpfile();
         fputcsv($fp, array_keys($exportMapping));
 
-
-        foreach ($exportMapping as $index => $propertyPath) {
-            $exportMapping[$index] = new PropertyPath($propertyPath);
-        }
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         foreach ($collection as $item) {
             $values = array();
             foreach ($exportMapping as $propertyPath) {
-                $values[] = $propertyPath->getValue($item);
+                $values[] = $propertyAccessor->getValue($item, $propertyPath);
             }
             fputcsv($fp, $values);
         }
