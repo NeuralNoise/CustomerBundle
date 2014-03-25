@@ -59,7 +59,7 @@ class Customer extends AbstractEntity implements CustomerInterface
      *
      * @ORM\Column(name="ssn", type="string")
      */
-    protected $ssn;
+    protected $ssn = '';
 
     /**
      * @var bool
@@ -369,7 +369,7 @@ class Customer extends AbstractEntity implements CustomerInterface
      */
     public function setSsn($ssn)
     {
-        $this->ssn = $ssn;
+        $this->ssn = (string) $ssn;
     }
 
     /**
